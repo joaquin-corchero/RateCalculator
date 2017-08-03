@@ -26,7 +26,7 @@ namespace RateCalculator.Domain
             }
             catch (Exception e)
             {
-
+                result.SetErrorMessage($"There was a problem reading the file {e.Message}");
             }
 
             return result;

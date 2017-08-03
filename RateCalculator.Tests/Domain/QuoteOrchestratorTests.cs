@@ -32,7 +32,6 @@ namespace RateCalculator.Tests.Domain
         QuoteResponse _result;
         Input _input;
         LoanProviderResult _loanProviderResult;
-        LoanProvider _loanProvider;
 
         [TestInitialize]
         public void Init()
