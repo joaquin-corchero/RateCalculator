@@ -1,6 +1,6 @@
 ﻿namespace RateCalculator.Models
 {
-    public class AvailableRate
+    public class LoanProvider
     {
         public string Lender { get; set; }
         public double Rate { get; set; }

@@ -45,15 +45,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Infrastructure\FileReader.cs" />
-    <Compile Include="Infrastructure\RateFileReader.cs" />
-    <Compile Include="Models\AvailableRate.cs" />
+    <Compile Include="Domain\CompoundingQuoteCalculator.cs" />
+    <Compile Include="Domain\FileReader.cs" />
+    <Compile Include="Domain\LenderSelector.cs" />
+    <Compile Include="Domain\RateFileReader.cs" />
+    <Compile Include="Models\LoanProvider.cs" />
+    <Compile Include="Models\Input.cs" />
+    <Compile Include="Models\ModelWithValidation.cs" />
     <Compile Include="Models\Quote.cs" />
     <Compile Include="Models\QuoteResponse.cs" />
+    <Compile Include="Models\RateReaderResult.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Infrastructure\QuoteOrchestrator.cs" />
-    <Compile Include="Validators\InputValidator.cs" />
+    <Compile Include="Domain\QuoteOrchestrator.cs" />
+    <Compile Include="Domain\InputProcessor.cs" />
     <Compile Include="Validators\ValidationResult.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -63,9 +63,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Infrastructure\RateFileReaderTests.cs" />
-    <Compile Include="Infrastructure\QuoteOrchestratorTests.cs" />
-    <Compile Include="Validators\InputValidatorTests.cs" />
+    <Compile Include="Domain\QuoteOrchestratorTests.cs" />
+    <Compile Include="Domain\InputProcessorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

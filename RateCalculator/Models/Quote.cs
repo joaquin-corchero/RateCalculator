@@ -2,9 +2,9 @@
 {
     public class Quote
     {
-        public object RequestedAmmount { get; internal set; }
-        public object Rate { get; internal set; }
-        public object MonthlyRepayment { get; internal set; }
-        public object TotalRepayment { get; internal set; }
+        public double RequestedAmmount { get; internal set; }
+        public double Rate { get; internal set; }
+        public double MonthlyRepayment { get; internal set; }
+        public double TotalRepayment { get; internal set; }
     }
 }

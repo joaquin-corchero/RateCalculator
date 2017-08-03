@@ -1,14 +1,16 @@
-﻿namespace RateCalculator.Validators
+﻿using System;
+
+namespace RateCalculator.Validators
 {
     public class ValidationResult
     {
-        public string Message { get;}
+        public string ErrorMessage { get;}
         public bool IsValid { get; }
 
         private ValidationResult(string message = null)
         {
-            Message = message;
-            IsValid = string.IsNullOrEmpty(Message);
+            ErrorMessage = message;
+            IsValid = string.IsNullOrEmpty(ErrorMessage);
         }
 
         public static ValidationResult Invalid(string message)

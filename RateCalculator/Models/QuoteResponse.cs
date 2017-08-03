@@ -2,20 +2,19 @@
 
 namespace RateCalculator.Models
 {
-    public class QuoteResponse
+    public class QuoteResponse : ModelWithValidation
     {
-        public ValidationResult ValidationResult { get; private set; }
-
         public Quote Quote { get; private set; }
 
-        public QuoteResponse()
+        public QuoteResponse() : base()
         {
-            ValidationResult = ValidationResult.Valid();
+            Quote = null;
         }
 
-        public void SetValidationResult(ValidationResult validation)
+        public void SetQuote(Quote quote)
         {
-            ValidationResult = validation;
+            Quote = quote;
         }
+
     }
 }

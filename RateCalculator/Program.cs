@@ -1,4 +1,4 @@
-﻿using RateCalculator.Infrastructure;
+﻿using RateCalculator.Domain;
 using RateCalculator.Validators;
 using System;
 
@@ -19,7 +19,7 @@ namespace RateCalculator
 
             if(!result.ValidationResult.IsValid)
             {
-                Console.WriteLine(result.ValidationResult.Message);
+                Console.WriteLine(result.ValidationResult.ErrorMessage);
             }
             else
             {
