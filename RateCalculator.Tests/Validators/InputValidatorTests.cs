@@ -26,12 +26,34 @@ namespace RateCalculator.Tests.Validators
         }
 
         [TestMethod]
-        public void It_throws_errors_if_less_than_2_arguments()
+        public void It_is_invalid_if_less_than_2_parameters()
         {
             _args = new string[] { };
             Execute();
 
-            _actual.Message.ShouldEqual("Incorrect argumenst, please try something like: ratecalculator.exe market.csv 1500");
+            _actual.Message.ShouldEqual("Incorrect arguments, please follow the format: ratecalculator.exe market.csv 1500");
+            _actual.IsValid.ShouldBeFalse();
+        }
+
+        [TestMethod]
+        public void It_is_invalid_if_more_than_2_paramters()
+        {
+            _args = new string[] { "1", "2", "3" };
+
+            Execute();
+
+            _actual.Message.ShouldEqual("Incorrect arguments, please follow the format: ratecalculator.exe market.csv 1500");
+            _actual.IsValid.ShouldBeFalse();
+        }
+
+        [TestMethod]
+        public void It_is_invalid_if_the_first_parameter_is_csv_file_name()
+        {
+            _args = new string[] { "1", "2"};
+
+            Execute();
+
+            _actual.Message.ShouldEqual("First parameter must be a csv: market.csv");
             _actual.IsValid.ShouldBeFalse();
         }
     }
