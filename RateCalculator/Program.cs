@@ -9,7 +9,7 @@ namespace RateCalculator
 
         static void SetupDependencies()
         {
-            _inputValidator = new InputValidator();
+            _inputValidator = new InputValidator(1000, 15000, 100);
         }
 
         static void Main(string[] args)

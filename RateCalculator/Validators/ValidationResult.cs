@@ -5,10 +5,20 @@
         public string Message { get;}
         public bool IsValid { get; }
 
-        public ValidationResult(string message = null)
+        private ValidationResult(string message = null)
         {
             Message = message;
             IsValid = string.IsNullOrEmpty(Message);
+        }
+
+        public static ValidationResult Invalid(string message)
+        {
+            return new ValidationResult(message);
+        }
+
+        public static ValidationResult Valid()
+        {
+            return new ValidationResult();
         }
     }
 }
