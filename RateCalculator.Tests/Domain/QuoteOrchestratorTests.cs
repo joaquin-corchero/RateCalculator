@@ -94,7 +94,7 @@ namespace RateCalculator.Tests.Domain
             _input.SetFileName(_args[0]);
             _input.SetLoanAmmount(1000);
             var loanProvider = new LoanProvider { Lender = "Name", Available = 30000, Rate = 0.07D };
-            var expectedQuote = new Quote();
+            var expectedQuote = Quote.Create(_input.LoanAmmount, loanProvider.Rate, 100, 100);
 
             _lenderSelector.Setup(l => l.ChooseLender(_loanProviderResult.LoanProviders, _input.LoanAmmount))
                 .Returns(loanProvider);

@@ -39,7 +39,7 @@ namespace RateCalculator.Domain
             new InputProcessor(1000, 15000, 100),
             new RateFileReader(),
             new LenderSelector(),
-            new CompoundingQuoteCalculator(12, 3))
+            new CompoundQuoteCalculator(12, 3))
         { }
 
         public QuoteResponse GetQuote(string[] args)

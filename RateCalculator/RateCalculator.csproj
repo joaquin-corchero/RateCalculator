@@ -45,8 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Domain\CompoundingQuoteCalculator.cs" />
-    <Compile Include="Domain\FileReader.cs" />
+    <Compile Include="Domain\CompoundQuoteCalculator.cs" />
     <Compile Include="Domain\LenderSelector.cs" />
     <Compile Include="Domain\RateFileReader.cs" />
     <Compile Include="Models\LoanProvider.cs" />
