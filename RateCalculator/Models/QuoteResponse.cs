@@ -1,6 +1,4 @@
-﻿using RateCalculator.Validators;
-
-namespace RateCalculator.Models
+﻿namespace RateCalculator.Models
 {
     public class QuoteResponse : ModelWithValidation
     {

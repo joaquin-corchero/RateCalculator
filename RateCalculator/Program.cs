@@ -1,5 +1,4 @@
 ﻿using RateCalculator.Domain;
-using RateCalculator.Validators;
 using System;
 
 namespace RateCalculator
@@ -23,7 +22,7 @@ namespace RateCalculator
             }
             else
             {
-                Console.WriteLine($"Requested amount: {result.Quote.RequestedAmmount} ");
+                Console.WriteLine($"Requested amount: {result.Quote.RequestedAmount} ");
                 Console.WriteLine($"Rate: {result.Quote.Rate} ");
                 Console.WriteLine($"Monthly repayment: {result.Quote.MonthlyRepayment} ");
                 Console.WriteLine($"Total repayment: {result.Quote.TotalRepayment} ");

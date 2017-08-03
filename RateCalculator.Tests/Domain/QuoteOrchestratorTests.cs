@@ -1,8 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using NBehave.Spec.MSTest;
 using RateCalculator.Domain;
 using RateCalculator.Models;
-using NBehave.Spec.MSTest;
 
 namespace RateCalculator.Tests.Domain
 {
@@ -77,10 +77,10 @@ namespace RateCalculator.Tests.Domain
         [TestMethod]
         public void It_returns_empty_quote_if_no_lender_can_be_found()
         {
-            _lenderSelector.Setup(l => l.ChooseLender(_loanProviderResult.LoanProviders, _input.LoanAmmount))
+            _lenderSelector.Setup(l => l.ChooseLender(_loanProviderResult.LoanProviders, _input.LoanAmount))
                 .Returns(new LoanProvider());
             _input.SetFileName(_args[0]);
-            _input.SetLoanAmmount(1000);
+            _input.SetLoanAmount(1000);
 
             Execute();
 
@@ -92,13 +92,13 @@ namespace RateCalculator.Tests.Domain
         public void It_returns_a_quote_if_the_lender_is_found()
         {
             _input.SetFileName(_args[0]);
-            _input.SetLoanAmmount(1000);
+            _input.SetLoanAmount(1000);
             var loanProvider = new LoanProvider { Lender = "Name", Available = 30000, Rate = 0.07D };
-            var expectedQuote = Quote.Create(_input.LoanAmmount, loanProvider.Rate, 100, 100);
+            var expectedQuote = Quote.Create(_input.LoanAmount, loanProvider.Rate, 100, 100);
 
-            _lenderSelector.Setup(l => l.ChooseLender(_loanProviderResult.LoanProviders, _input.LoanAmmount))
+            _lenderSelector.Setup(l => l.ChooseLender(_loanProviderResult.LoanProviders, _input.LoanAmount))
                 .Returns(loanProvider);
-            _quoteCalculator.Setup(q=> q.GetQuote(_input.LoanAmmount, loanProvider.Rate))
+            _quoteCalculator.Setup(q=> q.GetQuote(_input.LoanAmount, loanProvider.Rate))
                 .Returns(expectedQuote);
 
             Execute();

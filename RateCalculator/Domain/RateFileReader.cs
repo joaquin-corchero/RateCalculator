@@ -1,9 +1,8 @@
-﻿using RateCalculator.Models;
-using System.Collections.Generic;
-using System.Linq;
-using CsvHelper;
-using System.IO;
+﻿using CsvHelper;
+using RateCalculator.Models;
 using System;
+using System.IO;
+using System.Linq;
 
 namespace RateCalculator.Domain
 {

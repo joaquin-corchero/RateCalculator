@@ -5,7 +5,7 @@ namespace RateCalculator.Domain
 {
     public interface IQuoteCalculator
     {
-        Quote GetQuote(double loanAmmount, double rate);
+        Quote GetQuote(double loanAmount, double rate);
     }
 
     public class CompoundQuoteCalculator : IQuoteCalculator
@@ -19,14 +19,14 @@ namespace RateCalculator.Domain
             _repaymentsPerYear = repaymentsPerYear;
         }
 
-        public Quote GetQuote(double loanAmmount, double interestRate)
+        public Quote GetQuote(double loanAmount, double interestRate)
         {
             var a = 1 + (interestRate / _repaymentsPerYear);
             var c = Math.Pow(a, (_years * _repaymentsPerYear));
 
-            var totalAmmountToPay = loanAmmount * c;
+            var totalAmountToPay = loanAmount * c;
 
-            return Quote.Create(loanAmmount, interestRate, totalAmmountToPay, totalAmmountToPay / (_years * _repaymentsPerYear));
+            return Quote.Create(loanAmount, interestRate, totalAmountToPay, totalAmountToPay / (_years * _repaymentsPerYear));
         }
     }
 }

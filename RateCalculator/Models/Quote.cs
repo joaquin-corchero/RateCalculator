@@ -1,25 +1,23 @@
-﻿using System;
-
-namespace RateCalculator.Models
+﻿namespace RateCalculator.Models
 {
     public class Quote
     {
-        public double RequestedAmmount { get; set; }
+        public double RequestedAmount { get; set; }
         public double Rate { get; set; }
         public double MonthlyRepayment { get; set; }
         public double TotalRepayment { get; set; }
 
-        Quote(double requestedAmmount, double interestRate, double totalAmmountToPay, double monthlyRepayment)
+        Quote(double requestedAmount, double interestRate, double totalAmountToPay, double monthlyRepayment)
         {
-            RequestedAmmount = requestedAmmount;
+            RequestedAmount = requestedAmount;
             Rate = interestRate;
-            TotalRepayment = totalAmmountToPay;
+            TotalRepayment = totalAmountToPay;
             MonthlyRepayment = monthlyRepayment;
         }
 
-        public static Quote Create(double loanAmmount, double interestRate, double totalAmmountToPay, double monthlyRepayment)
+        public static Quote Create(double loanAmount, double interestRate, double totalAmountToPay, double monthlyRepayment)
         {
-            return new Quote(loanAmmount, interestRate, totalAmmountToPay, monthlyRepayment);
+            return new Quote(loanAmount, interestRate, totalAmountToPay, monthlyRepayment);
         }
     }
 }

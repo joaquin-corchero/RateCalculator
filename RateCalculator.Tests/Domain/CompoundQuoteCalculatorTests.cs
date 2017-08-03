@@ -2,10 +2,6 @@
 using NBehave.Spec.MSTest;
 using RateCalculator.Domain;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RateCalculator.Tests.Domain
 {
@@ -26,11 +22,11 @@ namespace RateCalculator.Tests.Domain
         public void The_correct_quote_is_returned()
         {
             var rate = 0.07;
-            var loanAmmount = 1000;
-            var quote = _quoteCalculator.GetQuote(loanAmmount, rate);
+            var loanAmount = 1000;
+            var quote = _quoteCalculator.GetQuote(loanAmount, rate);
 
             quote.Rate.ShouldEqual(rate);
-            quote.RequestedAmmount.ShouldEqual(loanAmmount);
+            quote.RequestedAmount.ShouldEqual(loanAmount);
             Math.Round(quote.MonthlyRepayment, 2).ShouldEqual(34.25);
             Math.Round(quote.TotalRepayment, 2).ShouldEqual(1232.93);
         }

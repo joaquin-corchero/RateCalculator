@@ -10,7 +10,7 @@ namespace RateCalculator.Domain
 
     public class InputProcessor : IInputprocessor
     {
-        public const string INVALID_LOAN_AMMOUNT = "Second parameter must be a number between 1,000 and 15,000, multiple of 100";
+        public const string INVALID_LOAN_AMOUNT = "Second parameter must be a number between 1,000 and 15,000, multiple of 100";
         public const string INVALID_CSV = "First parameter must be a csv: market.csv";
         public const string INVALID_PARAMETERS = "Incorrect arguments, please follow the format: ratecalculator.exe market.csv 1500";
 
@@ -42,11 +42,11 @@ namespace RateCalculator.Domain
                 return result;
             }
 
-            result.SetLoanAmmount(GetLoanAmmount(args[1]));
+            result.SetLoanAmount(GetLoanAmount(args[1]));
 
-            if(result.LoanAmmount == 0)
+            if(result.LoanAmount == 0)
             {
-                result.SetErrorMessage(INVALID_LOAN_AMMOUNT);
+                result.SetErrorMessage(INVALID_LOAN_AMOUNT);
             }
 
             return result;
@@ -61,19 +61,19 @@ namespace RateCalculator.Domain
             return null;
         }
 
-        double GetLoanAmmount(string ammount)
+        double GetLoanAmount(string amount)
         {
-            double loanAmmount = 0;
-            if(!double.TryParse(ammount, out loanAmmount))
+            double loanAmount = 0;
+            if(!double.TryParse(amount, out loanAmount))
                 return 0;
 
             if(
-                loanAmmount < _minimumLoan || 
-                loanAmmount > _maximumLoan || 
-                loanAmmount % _multiplesOf != 0)
+                loanAmount < _minimumLoan || 
+                loanAmount > _maximumLoan || 
+                loanAmount % _multiplesOf != 0)
                 return 0;
 
-            return loanAmmount;
+            return loanAmount;
         }
     }
 }

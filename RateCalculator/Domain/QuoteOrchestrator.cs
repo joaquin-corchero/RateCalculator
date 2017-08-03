@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using RateCalculator.Models;
-using RateCalculator.Validators;
+﻿using RateCalculator.Models;
 
 namespace RateCalculator.Domain
 {
@@ -60,14 +54,14 @@ namespace RateCalculator.Domain
                 return result;
             }
 
-            var loanProvider = _lenderSelector.ChooseLender(readerResult.LoanProviders, input.LoanAmmount);
+            var loanProvider = _lenderSelector.ChooseLender(readerResult.LoanProviders, input.LoanAmount);
             if(loanProvider == null)
             {
                 result.SetErrorMessage(NO_LOAN_PROVIDER_FOUND);
                 return result;
             }
 
-            result.SetQuote(_quoteCalculator.GetQuote(input.LoanAmmount, loanProvider.Rate));
+            result.SetQuote(_quoteCalculator.GetQuote(input.LoanAmount, loanProvider.Rate));
 
             return result;
         }

@@ -1,5 +1,4 @@
-﻿using RateCalculator.Validators;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace RateCalculator.Models
 {

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace RateCalculator.Validators
+﻿namespace RateCalculator.Validators
 {
     public class ValidationResult
     {

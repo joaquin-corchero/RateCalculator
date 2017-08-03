@@ -69,7 +69,7 @@ namespace RateCalculator.Tests.Domain
 
             Execute();
 
-            _actual.ValidationResult.ErrorMessage.ShouldEqual(InputProcessor.INVALID_LOAN_AMMOUNT);
+            _actual.ValidationResult.ErrorMessage.ShouldEqual(InputProcessor.INVALID_LOAN_AMOUNT);
             _actual.ValidationResult.IsValid.ShouldBeFalse();
         }
         
@@ -80,7 +80,7 @@ namespace RateCalculator.Tests.Domain
 
             Execute();
 
-            _actual.ValidationResult.ErrorMessage.ShouldEqual(InputProcessor.INVALID_LOAN_AMMOUNT);
+            _actual.ValidationResult.ErrorMessage.ShouldEqual(InputProcessor.INVALID_LOAN_AMOUNT);
             _actual.ValidationResult.IsValid.ShouldBeFalse();
         }
 
@@ -91,32 +91,32 @@ namespace RateCalculator.Tests.Domain
 
             Execute();
 
-            _actual.ValidationResult.ErrorMessage.ShouldEqual(InputProcessor.INVALID_LOAN_AMMOUNT);
+            _actual.ValidationResult.ErrorMessage.ShouldEqual(InputProcessor.INVALID_LOAN_AMOUNT);
             _actual.ValidationResult.IsValid.ShouldBeFalse();
         }
 
         [TestMethod]
-        public void It_is_invalid_if_loan_ammount_is_not_multiple()
+        public void It_is_invalid_if_loan_amount_is_not_multiple()
         {
             _args = new string[] { "file.csv", (_minimumLoan + 1 + _multiplesOf).ToString() };
 
             Execute();
 
-            _actual.ValidationResult.ErrorMessage.ShouldEqual(InputProcessor.INVALID_LOAN_AMMOUNT);
+            _actual.ValidationResult.ErrorMessage.ShouldEqual(InputProcessor.INVALID_LOAN_AMOUNT);
             _actual.ValidationResult.IsValid.ShouldBeFalse();
         }
 
         [TestMethod]
         public void It_is_valid_if_the_params_are_coorect()
         {
-            var ammount = _minimumLoan + _multiplesOf;
-            _args = new string[] { "file.csv", (ammount).ToString() };
+            var amount = _minimumLoan + _multiplesOf;
+            _args = new string[] { "file.csv", (amount).ToString() };
 
             Execute();
 
             _actual.ValidationResult.IsValid.ShouldBeTrue();
             _actual.FileName.ShouldEqual(_args[0]);
-            _actual.LoanAmmount.ShouldEqual(ammount);
+            _actual.LoanAmount.ShouldEqual(amount);
         }
     }
 }
