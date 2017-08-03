@@ -3,11 +3,6 @@ using System.IO;
 
 namespace RateCalculator.Domain
 {
-    public interface IInputprocessor
-    {
-        Input ProcessInput(string[] args);
-    }
-
     public class InputProcessor : IInputprocessor
     {
         public const string INVALID_LOAN_AMOUNT = "Second parameter must be a number between 1,000 and 15,000, multiple of 100";

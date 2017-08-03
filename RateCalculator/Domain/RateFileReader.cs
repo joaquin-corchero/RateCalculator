@@ -6,11 +6,6 @@ using System.Linq;
 
 namespace RateCalculator.Domain
 {
-    public interface IRateFileReader
-    {
-        LoanProviderResult Read(string fileName);
-    }
-
     public class RateFileReader : IRateFileReader
     {
         public LoanProviderResult Read(string fileName)

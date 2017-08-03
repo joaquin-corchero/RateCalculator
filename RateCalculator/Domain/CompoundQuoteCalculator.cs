@@ -3,11 +3,6 @@ using System;
 
 namespace RateCalculator.Domain
 {
-    public interface IQuoteCalculator
-    {
-        Quote GetQuote(double loanAmount, double rate);
-    }
-
     public class CompoundQuoteCalculator : IQuoteCalculator
     {
         private int _years;

@@ -46,6 +46,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Domain\CompoundQuoteCalculator.cs" />
+    <Compile Include="Domain\IInputprocessor.cs" />
+    <Compile Include="Domain\ILenderSelector.cs" />
+    <Compile Include="Domain\IQuoteCalculator.cs" />
+    <Compile Include="Domain\IQuoteResponseFactory.cs" />
+    <Compile Include="Domain\IRateFileReader.cs" />
     <Compile Include="Domain\LenderSelector.cs" />
     <Compile Include="Domain\RateFileReader.cs" />
     <Compile Include="Models\LoanProvider.cs" />

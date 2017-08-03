@@ -2,11 +2,6 @@
 
 namespace RateCalculator.Domain
 {
-    public interface IQuoteResponseFactory
-    {
-        QuoteResponse GetQuote(string[] args);
-    }
-
     public class QuoteResponseFactory : IQuoteResponseFactory
     {
         public const string NO_LOAN_PROVIDER_FOUND = "Sorry, is not possible to provide a quote at this time";
