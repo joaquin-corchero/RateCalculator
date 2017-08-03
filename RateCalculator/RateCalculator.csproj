@@ -56,7 +56,7 @@
     <Compile Include="Models\RateReaderResult.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Domain\QuoteOrchestrator.cs" />
+    <Compile Include="Domain\QuoteResponseFactory.cs" />
     <Compile Include="Domain\InputProcessor.cs" />
     <Compile Include="Validators\ValidationResult.cs" />
   </ItemGroup>

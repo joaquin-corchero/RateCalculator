@@ -5,11 +5,11 @@ namespace RateCalculator
 {
     class Program
     {
-        static IQuoteOrchestrator _quoter;
+        static IQuoteResponseFactory _quoter;
 
         static void SetupDependencies()
         {
-            _quoter = new QuoteOrchestrator();
+            _quoter = new QuoteResponseFactory();
         }
 
         static void Main(string[] args)

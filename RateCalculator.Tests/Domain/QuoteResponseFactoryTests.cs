@@ -8,7 +8,7 @@ namespace RateCalculator.Tests.Domain
 {
     public class When_working_with_the_quoter
     {
-        protected IQuoteOrchestrator _quoter;
+        protected IQuoteResponseFactory _quoter;
         protected Mock<IInputprocessor> _inputProcessor = new Mock<IInputprocessor>();
         protected Mock<IRateFileReader> _rateFileReader = new Mock<IRateFileReader>();
         protected Mock<ILenderSelector> _lenderSelector = new Mock<ILenderSelector>();
@@ -16,12 +16,12 @@ namespace RateCalculator.Tests.Domain
 
         public When_working_with_the_quoter()
         {
-            _quoter = new QuoteOrchestrator(
+            _quoter = new QuoteResponseFactory(
                 _inputProcessor.Object,
                 _rateFileReader.Object,
                 _lenderSelector.Object,
                 _quoteCalculator.Object
-                );
+            );
         }
     }
 
@@ -83,7 +83,7 @@ namespace RateCalculator.Tests.Domain
 
             Execute();
 
-            _result.ValidationResult.ErrorMessage.ShouldEqual(QuoteOrchestrator.NO_LOAN_PROVIDER_FOUND);
+            _result.ValidationResult.ErrorMessage.ShouldEqual(QuoteResponseFactory.NO_LOAN_PROVIDER_FOUND);
             _result.Quote.ShouldBeNull();
         }
 

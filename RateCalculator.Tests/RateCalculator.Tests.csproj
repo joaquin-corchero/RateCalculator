@@ -65,7 +65,7 @@
   <ItemGroup>
     <Compile Include="Domain\CompoundQuoteCalculatorTests.cs" />
     <Compile Include="Domain\LenderSelectorTests.cs" />
-    <Compile Include="Domain\QuoteOrchestratorTests.cs" />
+    <Compile Include="Domain\QuoteResponseFactoryTests.cs" />
     <Compile Include="Domain\InputProcessorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

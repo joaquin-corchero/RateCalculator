@@ -2,12 +2,12 @@
 
 namespace RateCalculator.Domain
 {
-    public interface IQuoteOrchestrator
+    public interface IQuoteResponseFactory
     {
         QuoteResponse GetQuote(string[] args);
     }
 
-    public class QuoteOrchestrator : IQuoteOrchestrator
+    public class QuoteResponseFactory : IQuoteResponseFactory
     {
         public const string NO_LOAN_PROVIDER_FOUND = "Sorry, is not possible to provide a quote at this time";
 
@@ -16,7 +16,7 @@ namespace RateCalculator.Domain
         readonly ILenderSelector _lenderSelector;
         readonly IQuoteCalculator _quoteCalculator;
 
-        public QuoteOrchestrator(
+        public QuoteResponseFactory(
             IInputprocessor inputValidator,
             IRateFileReader rateFileReader,
             ILenderSelector lenderSelector,
@@ -29,7 +29,7 @@ namespace RateCalculator.Domain
             _quoteCalculator = quoteCalculator;
         }
 
-        public QuoteOrchestrator() : this(
+        public QuoteResponseFactory() : this(
             new InputProcessor(1000, 15000, 100),
             new RateFileReader(),
             new LenderSelector(),
