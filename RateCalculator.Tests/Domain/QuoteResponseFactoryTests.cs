@@ -30,14 +30,14 @@ namespace RateCalculator.Tests.Domain
     {
         string[] _args;
         QuoteResponse _result;
-        Input _input;
+        InputModel _input;
         LenderReaderResult _loanProviderResult;
 
         [TestInitialize]
         public void Init()
         {
             _args = new string[] { "file.csv", "1000" };
-            _input = new Input();
+            _input = new InputModel();
             _loanProviderResult = new LenderReaderResult();
 
 
@@ -97,7 +97,7 @@ namespace RateCalculator.Tests.Domain
 
             _lenderSelector.Setup(l => l.ChooseLender(_loanProviderResult.Lenders, _input.LoanAmount))
                 .Returns(loanProvider);
-            _quoteCalculator.Setup(q=> q.GetQuote(_input.LoanAmount, loanProvider.Rate))
+            _quoteCalculator.Setup(q=> q.Calculate(_input.LoanAmount, loanProvider.Rate))
                 .Returns(expectedQuote);
 
             Execute();

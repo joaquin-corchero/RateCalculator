@@ -3,6 +3,11 @@ using System.IO;
 
 namespace RateCalculator.Domain
 {
+    public interface IInputprocessor
+    {
+        InputModel ProcessInput(string[] args);
+    }
+
     public class InputProcessor : IInputprocessor
     {
         public const string INVALID_LOAN_AMOUNT = "Second parameter must be a number between 1,000 and 15,000, multiple of 100";
@@ -10,7 +15,7 @@ namespace RateCalculator.Domain
         public const string INVALID_PARAMETERS = "Incorrect arguments, please follow the format: ratecalculator.exe market.csv 1500";
 
         double _minimumLoan { get; }
-        double  _maximumLoan { get; }
+        double _maximumLoan { get; }
         double _multiplesOf { get; }
        
         public InputProcessor(double minimumLoan, double maximumLoan, double multiplesOf = 1)
@@ -20,9 +25,9 @@ namespace RateCalculator.Domain
             _multiplesOf = multiplesOf;
         }
 
-        public Input ProcessInput(string[] args)
+        public InputModel ProcessInput(string[] args)
         {
-            var result = new Input();
+            var result = new InputModel();
             if (args.Length != 2)
             {
                 result.SetErrorMessage(INVALID_PARAMETERS);

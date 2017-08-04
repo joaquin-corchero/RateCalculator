@@ -1,6 +1,6 @@
 ﻿namespace RateCalculator.Models
 {
-    public class Input : ModelWithValidation
+    public class InputModel : ModelWithValidation
     {
         public string FileName { get; private set; }
 

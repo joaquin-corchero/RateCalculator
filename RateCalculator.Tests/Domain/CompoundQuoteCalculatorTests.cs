@@ -23,7 +23,7 @@ namespace RateCalculator.Tests.Domain
         {
             var rate = 0.07;
             var loanAmount = 1000;
-            var quote = _quoteCalculator.GetQuote(loanAmount, rate);
+            var quote = _quoteCalculator.Calculate(loanAmount, rate);
 
             quote.Rate.ShouldEqual(rate);
             quote.RequestedAmount.ShouldEqual(loanAmount);

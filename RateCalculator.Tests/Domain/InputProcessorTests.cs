@@ -21,7 +21,7 @@ namespace RateCalculator.Tests.Domain
     [TestClass]
     public class And_validating_the_input : When_working_with_the_input_processor
     {
-        Input _actual;
+        InputModel _actual;
         string[] _args = null;
 
         void Execute()

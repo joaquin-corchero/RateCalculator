@@ -3,6 +3,11 @@ using System;
 
 namespace RateCalculator.Domain
 {
+    public interface IQuoteCalculator
+    {
+        Quote Calculate(double loanAmount, double rate);
+    }
+
     public class CompoundQuoteCalculator : IQuoteCalculator
     {
         private int _years;
@@ -14,7 +19,7 @@ namespace RateCalculator.Domain
             _repaymentsPerYear = repaymentsPerYear;
         }
 
-        public Quote GetQuote(double loanAmount, double interestRate)
+        public Quote Calculate(double loanAmount, double interestRate)
         {
             var a = 1 + (interestRate / _repaymentsPerYear);
             var c = Math.Pow(a, (_years * _repaymentsPerYear));

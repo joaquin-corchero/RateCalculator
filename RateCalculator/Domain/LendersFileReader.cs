@@ -1,11 +1,14 @@
-﻿using CsvHelper;
-using RateCalculator.Models;
+﻿using RateCalculator.Models;
 using System;
 using System.IO;
-using System.Linq;
 
 namespace RateCalculator.Domain
 {
+    public interface ILendersFileReader
+    {
+        LenderReaderResult Read(string fileName);
+    }
+
     public class LendersFileReader : ILendersFileReader
     {
         public const string FILE_DOES_NOT_EXIST = "The file does not exist";
@@ -33,8 +36,8 @@ namespace RateCalculator.Domain
             TextReader reader = TextReader.Null;
             try
             {
-                reader = _fileOpener.ReadContent(fileName);
-                result.SetLenders(_fileOpener.GetLenders(reader));
+                reader = _fileOpener.GetTextReader(fileName);
+                result.SetLenders(_fileOpener.ReadLoanProviders(reader));
                 if(result.Lenders.Count == 0)
                 {
                     result.SetErrorMessage(WRONG_FORMAT_OR_EMPTY);

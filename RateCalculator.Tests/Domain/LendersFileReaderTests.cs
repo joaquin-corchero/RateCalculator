@@ -53,8 +53,8 @@ namespace RateCalculator.Tests.Domain
             _fileOpener.Setup(f => f.DoesFileExist(_fileName)).Returns(true);
             var textReader = new  Mock<TextReader>();
             textReader.Setup(tr => tr.ReadLine()).Returns("50,100");
-            _fileOpener.Setup(f => f.ReadContent(_fileName)).Returns(textReader.Object);
-            _fileOpener.Setup(f=> f.GetLenders(textReader.Object)).Returns(new List<LoanProvider>());
+            _fileOpener.Setup(f => f.GetTextReader(_fileName)).Returns(textReader.Object);
+            _fileOpener.Setup(f=> f.ReadLoanProviders(textReader.Object)).Returns(new List<LoanProvider>());
 
             Execute();
 
@@ -73,8 +73,8 @@ namespace RateCalculator.Tests.Domain
                 new LoanProvider { Lender = "Name", Available = 10, Rate= 0.09D }
             };
             _fileOpener.Setup(f => f.DoesFileExist(_fileName)).Returns(true);
-            _fileOpener.Setup(f => f.ReadContent(_fileName)).Returns(textReader.Object);
-            _fileOpener.Setup(f => f.GetLenders(textReader.Object)).Throws(new Exception("something wrong"));
+            _fileOpener.Setup(f => f.GetTextReader(_fileName)).Returns(textReader.Object);
+            _fileOpener.Setup(f => f.ReadLoanProviders(textReader.Object)).Throws(new Exception("something wrong"));
 
             Execute();
 
@@ -93,8 +93,8 @@ namespace RateCalculator.Tests.Domain
                 new LoanProvider { Lender = "Name", Available = 10, Rate= 0.09D }
             };
             _fileOpener.Setup(f => f.DoesFileExist(_fileName)).Returns(true);
-            _fileOpener.Setup(f => f.ReadContent(_fileName)).Returns(textReader.Object);
-            _fileOpener.Setup(f => f.GetLenders(textReader.Object)).Returns(lenders);
+            _fileOpener.Setup(f => f.GetTextReader(_fileName)).Returns(textReader.Object);
+            _fileOpener.Setup(f => f.ReadLoanProviders(textReader.Object)).Returns(lenders);
 
             Execute();
 

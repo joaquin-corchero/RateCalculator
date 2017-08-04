@@ -2,11 +2,16 @@
 
 namespace RateCalculator.Domain
 {
+    public interface IQuoteResponseFactory
+    {
+        QuoteResponse GetQuote(string[] args);
+    }
+
     public class QuoteResponseFactory : IQuoteResponseFactory
     {
         public const string NO_LOAN_PROVIDER_FOUND = "Sorry, is not possible to provide a quote at this time";
 
-        readonly IInputprocessor _inputValidator;
+        readonly IInputprocessor _inputProcessor;
         readonly ILendersFileReader _rateFileReader;
         readonly ILenderSelector _lenderSelector;
         readonly IQuoteCalculator _quoteCalculator;
@@ -18,7 +23,7 @@ namespace RateCalculator.Domain
             IQuoteCalculator quoteCalculator
         )
         {
-            _inputValidator = inputValidator;
+            _inputProcessor = inputValidator;
             _rateFileReader = rateFileReader;
             _lenderSelector = lenderSelector;
             _quoteCalculator = quoteCalculator;
@@ -35,7 +40,7 @@ namespace RateCalculator.Domain
         {
             QuoteResponse result = new QuoteResponse();
 
-            var input = _inputValidator.ProcessInput(args);
+            var input = _inputProcessor.ProcessInput(args);
             if(!input.ValidationResult.IsValid)
             {
                 result.SetErrorMessage(input.ValidationResult.ErrorMessage);
@@ -56,7 +61,7 @@ namespace RateCalculator.Domain
                 return result;
             }
 
-            result.SetQuote(_quoteCalculator.GetQuote(input.LoanAmount, loanProvider.Rate));
+            result.SetQuote(_quoteCalculator.Calculate(input.LoanAmount, loanProvider.Rate));
 
             return result;
         }

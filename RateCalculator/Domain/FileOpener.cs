@@ -10,9 +10,9 @@ namespace RateCalculator.Domain
     {
         bool DoesFileExist(string fileName);
 
-        TextReader ReadContent(string fileName);
+        TextReader GetTextReader(string fileName);
 
-        List<LoanProvider> GetLenders(TextReader reader);
+        List<LoanProvider> ReadLoanProviders(TextReader reader);
     }
 
     public class FileOpener : IFileOpener
@@ -22,12 +22,12 @@ namespace RateCalculator.Domain
             return File.Exists(fileName);
         }
 
-        public TextReader ReadContent(string fileName)
+        public TextReader GetTextReader(string fileName)
         {
             return File.OpenText(fileName);
         }
 
-        public List<LoanProvider> GetLenders(TextReader reader)
+        public List<LoanProvider> ReadLoanProviders(TextReader reader)
         {
             var csv = new CsvReader(reader);
             csv.Configuration.HasHeaderRecord = true;

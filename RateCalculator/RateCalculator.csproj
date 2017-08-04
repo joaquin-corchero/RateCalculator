@@ -47,15 +47,18 @@
   <ItemGroup>
     <Compile Include="Domain\CompoundQuoteCalculator.cs" />
     <Compile Include="Domain\FileOpener.cs" />
-    <Compile Include="Domain\IInputprocessor.cs" />
-    <Compile Include="Domain\ILenderSelector.cs" />
-    <Compile Include="Domain\IQuoteCalculator.cs" />
-    <Compile Include="Domain\IQuoteResponseFactory.cs" />
-    <Compile Include="Domain\ILendersFileReader.cs" />
+    <Compile Include="Handlers\OutputHandler.cs" />
+    <Compile Include="Handlers\Handler.cs" />
+    <Compile Include="Handlers\RateFinderHandler.cs" />
+    <Compile Include="Handlers\InputHandler.cs" />
     <Compile Include="Domain\LenderSelector.cs" />
     <Compile Include="Domain\LendersFileReader.cs" />
+    <Compile Include="Handlers\LoanProviderHandler.cs" />
+    <Compile Include="Models\QuoteModel.cs" />
+    <Compile Include="Domain\QuoteChainProcessor.cs" />
+    <Compile Include="Handlers\QuoteResponseHandler.cs" />
     <Compile Include="Models\LoanProvider.cs" />
-    <Compile Include="Models\Input.cs" />
+    <Compile Include="Models\InputModel.cs" />
     <Compile Include="Models\ModelWithValidation.cs" />
     <Compile Include="Models\Quote.cs" />
     <Compile Include="Models\QuoteResponse.cs" />
