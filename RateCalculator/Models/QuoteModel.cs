@@ -1,5 +1,6 @@
 ﻿using RateCalculator.Validators;
 using System.Collections.Generic;
+using System;
 
 namespace RateCalculator.Models
 {
@@ -24,6 +25,11 @@ namespace RateCalculator.Models
         public void SetErrorMessage(string errorMessage)
         {
             ValidationResult = ValidationResult.Invalid(errorMessage);
+        }
+
+        public void SetArgs(string[] args)
+        {
+            Args = args;
         }
     }
 }
