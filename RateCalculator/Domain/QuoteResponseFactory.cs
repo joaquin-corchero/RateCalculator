@@ -7,13 +7,13 @@ namespace RateCalculator.Domain
         public const string NO_LOAN_PROVIDER_FOUND = "Sorry, is not possible to provide a quote at this time";
 
         readonly IInputprocessor _inputValidator;
-        readonly IRateFileReader _rateFileReader;
+        readonly ILendersFileReader _rateFileReader;
         readonly ILenderSelector _lenderSelector;
         readonly IQuoteCalculator _quoteCalculator;
 
         public QuoteResponseFactory(
             IInputprocessor inputValidator,
-            IRateFileReader rateFileReader,
+            ILendersFileReader rateFileReader,
             ILenderSelector lenderSelector,
             IQuoteCalculator quoteCalculator
         )
@@ -26,7 +26,7 @@ namespace RateCalculator.Domain
 
         public QuoteResponseFactory() : this(
             new InputProcessor(1000, 15000, 100),
-            new RateFileReader(),
+            new LendersFileReader(),
             new LenderSelector(),
             new CompoundQuoteCalculator(12, 3))
         { }
@@ -49,7 +49,7 @@ namespace RateCalculator.Domain
                 return result;
             }
 
-            var loanProvider = _lenderSelector.ChooseLender(readerResult.LoanProviders, input.LoanAmount);
+            var loanProvider = _lenderSelector.ChooseLender(readerResult.Lenders, input.LoanAmount);
             if(loanProvider == null)
             {
                 result.SetErrorMessage(NO_LOAN_PROVIDER_FOUND);

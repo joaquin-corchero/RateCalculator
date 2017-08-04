@@ -67,6 +67,7 @@
     <Compile Include="Domain\LenderSelectorTests.cs" />
     <Compile Include="Domain\QuoteResponseFactoryTests.cs" />
     <Compile Include="Domain\InputProcessorTests.cs" />
+    <Compile Include="Domain\LendersFileReaderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

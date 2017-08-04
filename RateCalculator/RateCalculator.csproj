@@ -46,19 +46,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Domain\CompoundQuoteCalculator.cs" />
+    <Compile Include="Domain\FileOpener.cs" />
     <Compile Include="Domain\IInputprocessor.cs" />
     <Compile Include="Domain\ILenderSelector.cs" />
     <Compile Include="Domain\IQuoteCalculator.cs" />
     <Compile Include="Domain\IQuoteResponseFactory.cs" />
-    <Compile Include="Domain\IRateFileReader.cs" />
+    <Compile Include="Domain\ILendersFileReader.cs" />
     <Compile Include="Domain\LenderSelector.cs" />
-    <Compile Include="Domain\RateFileReader.cs" />
+    <Compile Include="Domain\LendersFileReader.cs" />
     <Compile Include="Models\LoanProvider.cs" />
     <Compile Include="Models\Input.cs" />
     <Compile Include="Models\ModelWithValidation.cs" />
     <Compile Include="Models\Quote.cs" />
     <Compile Include="Models\QuoteResponse.cs" />
-    <Compile Include="Models\RateReaderResult.cs" />
+    <Compile Include="Models\LenderReaderResult.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Domain\QuoteResponseFactory.cs" />

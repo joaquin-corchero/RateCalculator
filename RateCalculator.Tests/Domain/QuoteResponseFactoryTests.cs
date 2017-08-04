@@ -10,7 +10,7 @@ namespace RateCalculator.Tests.Domain
     {
         protected IQuoteResponseFactory _quoter;
         protected Mock<IInputprocessor> _inputProcessor = new Mock<IInputprocessor>();
-        protected Mock<IRateFileReader> _rateFileReader = new Mock<IRateFileReader>();
+        protected Mock<ILendersFileReader> _rateFileReader = new Mock<ILendersFileReader>();
         protected Mock<ILenderSelector> _lenderSelector = new Mock<ILenderSelector>();
         protected Mock<IQuoteCalculator> _quoteCalculator = new Mock<IQuoteCalculator>();
 
@@ -31,14 +31,14 @@ namespace RateCalculator.Tests.Domain
         string[] _args;
         QuoteResponse _result;
         Input _input;
-        LoanProviderResult _loanProviderResult;
+        LenderReaderResult _loanProviderResult;
 
         [TestInitialize]
         public void Init()
         {
             _args = new string[] { "file.csv", "1000" };
             _input = new Input();
-            _loanProviderResult = new LoanProviderResult();
+            _loanProviderResult = new LenderReaderResult();
 
 
             _inputProcessor.Setup(i => i.ProcessInput(_args)).Returns(_input);
@@ -76,7 +76,7 @@ namespace RateCalculator.Tests.Domain
         [TestMethod]
         public void It_returns_empty_quote_if_no_lender_can_be_found()
         {
-            _lenderSelector.Setup(l => l.ChooseLender(_loanProviderResult.LoanProviders, _input.LoanAmount))
+            _lenderSelector.Setup(l => l.ChooseLender(_loanProviderResult.Lenders, _input.LoanAmount))
                 .Returns(new LoanProvider());
             _input.SetFileName(_args[0]);
             _input.SetLoanAmount(1000);
@@ -95,7 +95,7 @@ namespace RateCalculator.Tests.Domain
             var loanProvider = new LoanProvider { Lender = "Name", Available = 30000, Rate = 0.07D };
             var expectedQuote = Quote.Create(_input.LoanAmount, loanProvider.Rate, 100, 100);
 
-            _lenderSelector.Setup(l => l.ChooseLender(_loanProviderResult.LoanProviders, _input.LoanAmount))
+            _lenderSelector.Setup(l => l.ChooseLender(_loanProviderResult.Lenders, _input.LoanAmount))
                 .Returns(loanProvider);
             _quoteCalculator.Setup(q=> q.GetQuote(_input.LoanAmount, loanProvider.Rate))
                 .Returns(expectedQuote);
