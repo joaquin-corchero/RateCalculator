@@ -1,12 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using RateCalculator.Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NBehave.Spec.MSTest;
+using RateCalculator.Handlers;
+using RateCalculator.Models;
 
 namespace RateCalculator.Tests.Domain
 {

@@ -1,6 +1,5 @@
-﻿using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using RateCalculator.Handlers;
+using RateCalculator.Models;
 
 namespace RateCalculator.Domain
 {
