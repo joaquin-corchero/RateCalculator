@@ -14,6 +14,8 @@ namespace RateCalculator
 
         static void Main(string[] args)
         {
+            SetupDependencies();
+
             var result = _quoter.GetQuote(args);
 
             if(!result.ValidationResult.IsValid)
@@ -22,10 +24,10 @@ namespace RateCalculator
             }
             else
             {
-                Console.WriteLine($"Requested amount: {result.Quote.RequestedAmount} ");
-                Console.WriteLine($"Rate: {result.Quote.Rate} ");
-                Console.WriteLine($"Monthly repayment: {result.Quote.MonthlyRepayment} ");
-                Console.WriteLine($"Total repayment: {result.Quote.TotalRepayment} ");
+                Console.WriteLine($"Requested amount: £{result.Quote.RequestedAmount} ");
+                Console.WriteLine($"Rate: {Math.Round(result.Quote.Rate * 100, 1)}%");
+                Console.WriteLine($"Monthly repayment: £{Math.Round(result.Quote.MonthlyRepayment, 2)} ");
+                Console.WriteLine($"Total repayment: £{Math.Round(result.Quote.TotalRepayment, 2)} ");
             }
 
             Console.WriteLine("Press any key to exit");

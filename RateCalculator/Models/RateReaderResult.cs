@@ -11,7 +11,7 @@ namespace RateCalculator.Models
             LoanProviders = new List<LoanProvider>();
         }
 
-        public void SetRates(List<LoanProvider> loanProviders)
+        public void SetLoanPrvider(List<LoanProvider> loanProviders)
         {
             LoanProviders = loanProviders;
         }

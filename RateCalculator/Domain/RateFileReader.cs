@@ -16,12 +16,14 @@ namespace RateCalculator.Domain
                 using (TextReader reader = File.OpenText(fileName))
                 {
                     var csv = new CsvReader(reader);
-                    result.SetRates(csv.GetRecords<LoanProvider>().ToList());
+                    csv.Configuration.HasHeaderRecord = true;
+                    var data = csv.GetRecords<LoanProvider>();
+                    result.SetLoanPrvider(data.ToList());
                 }
             }
             catch (Exception e)
             {
-                result.SetErrorMessage($"There was a problem reading the file {e.Message}");
+                result.SetErrorMessage($"There was a problem reading the file: {e.Message}");
             }
 
             return result;
