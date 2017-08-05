@@ -63,12 +63,14 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsoleFormatterTests.cs" />
     <Compile Include="Domain\CompoundQuoteCalculatorTests.cs" />
     <Compile Include="Domain\LenderSelectorTests.cs" />
     <Compile Include="Domain\QuoteChainProcessor.cs" />
     <Compile Include="Domain\QuoteResponseFactoryTests.cs" />
     <Compile Include="Domain\InputProcessorTests.cs" />
     <Compile Include="Domain\LendersFileReaderTests.cs" />
+    <Compile Include="Handlers\CompoundCalculatorHandlerTests.cs" />
     <Compile Include="Handlers\RateFinderHandler.cs" />
     <Compile Include="Handlers\LoanProviderHandlerTests.cs" />
     <Compile Include="Handlers\InputHandlerTests.cs" />

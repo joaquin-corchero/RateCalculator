@@ -1,33 +1,39 @@
 ﻿using RateCalculator.Domain;
 using System;
+using static RateCalculator.ConsoleFormatter;
 
 namespace RateCalculator
 {
     class Program
     {
-        static IQuoteResponseFactory _quoter;
+        static IQuoteChainProcessor _quoter;
+        static IOutputFormatter _outputFormatter;
 
         static void SetupDependencies()
         {
-            _quoter = new QuoteResponseFactory();
+            _quoter = new QuoteChainProcessor();
+            _outputFormatter = new ConsoleFormatter();
         }
 
         static void Main(string[] args)
         {
             SetupDependencies();
 
-            var result = _quoter.GetQuote(args);
+            var quote = _quoter.Process(args);
+            _outputFormatter.GenerateOutput(quote);
 
-            if(!result.ValidationResult.IsValid)
+
+
+            if (!quote.ValidationResult.IsValid)
             {
-                Console.WriteLine(result.ValidationResult.ErrorMessage);
+                Console.WriteLine(quote.ValidationResult.ErrorMessage);
             }
             else
             {
-                Console.WriteLine($"Requested amount: £{result.Quote.RequestedAmount} ");
-                Console.WriteLine($"Rate: {Math.Round(result.Quote.Rate * 100, 1)}%");
-                Console.WriteLine($"Monthly repayment: £{Math.Round(result.Quote.MonthlyRepayment, 2)} ");
-                Console.WriteLine($"Total repayment: £{Math.Round(result.Quote.TotalRepayment, 2)} ");
+                Console.WriteLine($"Requested amount: £{quote.Quote.RequestedAmount} ");
+                Console.WriteLine($"Rate: {Math.Round(quote.Quote.Rate * 100, 1)}%");
+                Console.WriteLine($"Monthly repayment: £{Math.Round(quote.Quote.MonthlyRepayment, 2)} ");
+                Console.WriteLine($"Total repayment: £{Math.Round(quote.Quote.TotalRepayment, 2)} ");
             }
 
             Console.WriteLine("Press any key to exit");

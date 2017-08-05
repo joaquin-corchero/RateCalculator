@@ -13,15 +13,13 @@ namespace RateCalculator.Domain
         IHandler _inputHandler;
         IHandler _loanProviderReaderHandler;
         IHandler _rateFinderHandler;
-        IHandler _quoteHandler;
-        IHandler _outputHandler;
+        IHandler _quoteCalculatorHandler;
 
         public QuoteChainProcessor() : this(
             new InputHandler(),
             new LoanProviderHandler(),
             new RateFinderHandler(),
-            new QuoteResponseHandler(),
-            new OutputHandler())
+            new CompoundCalculatorHandler())
         {
         }
 
@@ -29,22 +27,19 @@ namespace RateCalculator.Domain
             IHandler inputHandler,
             IHandler loanProviderReaderHandler,
             IHandler rateFinderHandler,
-            IHandler quoteHandler,
-            IHandler outputHandler)
+            IHandler quoteCalculatorHandler)
         {
             _inputHandler = inputHandler;
             _loanProviderReaderHandler = loanProviderReaderHandler;
             _rateFinderHandler = rateFinderHandler;
-            _quoteHandler = quoteHandler;
-            _outputHandler = outputHandler;
+            _quoteCalculatorHandler = quoteCalculatorHandler;
         }
 
         public QuoteModel Process(string[] args)
         {
             _inputHandler.SetSuccessor(_loanProviderReaderHandler);
             _loanProviderReaderHandler.SetSuccessor(_rateFinderHandler);
-            _rateFinderHandler.SetSuccessor(_quoteHandler);
-            _quoteHandler.SetSuccessor(_outputHandler);
+            _rateFinderHandler.SetSuccessor(_quoteCalculatorHandler);
 
             var quote = new QuoteModel(args);
 

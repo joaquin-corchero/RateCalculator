@@ -28,8 +28,7 @@ namespace RateCalculator.Tests.Domain
                 _inputHandler.Object,
                 _loanProviderReaderHandler.Object,
                 _rateFinderHandler.Object,
-                _quoteHandler.Object,
-                _outputHandler.Object
+                _quoteHandler.Object
             );
         }
     }
@@ -57,9 +56,6 @@ namespace RateCalculator.Tests.Domain
                 Times.Once);
             _rateFinderHandler.Verify(h =>
                 h.SetSuccessor(It.Is<IHandler>(v => v == _quoteHandler.Object)),
-                Times.Once);
-            _quoteHandler.Verify(h =>
-                h.SetSuccessor(It.Is<IHandler>(v => v == _outputHandler.Object)),
                 Times.Once);
         }
 
