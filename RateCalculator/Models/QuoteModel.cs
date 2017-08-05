@@ -22,6 +22,7 @@ namespace RateCalculator.Models
 
         public Quote Quote { get; private set; }
 
+        public double MinimumLendingRateAvailable { get; set; }
 
         public QuoteModel(string[] args, double minimumLoan = 1000, double maximumLoan = 15000, double multiplesOf = 100)
         {
@@ -39,9 +40,14 @@ namespace RateCalculator.Models
             ValidationResult = ValidationResult.Invalid(errorMessage);
         }
 
-        internal void SetLoanProviders(List<LoanProvider> loanProviders)
+        public void SetLoanProviders(List<LoanProvider> loanProviders)
         {
             LoanProviders = loanProviders;
+        }
+
+        internal void SetMinimumAvailableRate(double rate)
+        {
+            MinimumLendingRateAvailable = rate;
         }
     }
 }

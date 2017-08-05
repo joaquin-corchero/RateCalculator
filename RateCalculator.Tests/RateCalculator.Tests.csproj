@@ -69,6 +69,7 @@
     <Compile Include="Domain\QuoteResponseFactoryTests.cs" />
     <Compile Include="Domain\InputProcessorTests.cs" />
     <Compile Include="Domain\LendersFileReaderTests.cs" />
+    <Compile Include="Handlers\RateFinderHandler.cs" />
     <Compile Include="Handlers\LoanProviderHandlerTests.cs" />
     <Compile Include="Handlers\InputHandlerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
