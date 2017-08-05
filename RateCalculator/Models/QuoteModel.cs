@@ -8,7 +8,13 @@ namespace RateCalculator.Models
     {
         public ValidationResult ValidationResult { get; private set; }
 
-        public string[] Args { get; private set; }
+        public string[] Args { get; }
+
+        public double MinimumLoan { get; }
+
+        public double MaximumLoan { get; }
+
+        public double MultiplesOf { get; }
 
         public InputModel InputModel { get; private set; }
 
@@ -16,20 +22,20 @@ namespace RateCalculator.Models
 
         public Quote Quote { get; private set; }
 
-        public QuoteModel(string[] args)
+
+        public QuoteModel(string[] args, double minimumLoan = 1000, double maximumLoan = 15000, double multiplesOf = 100)
         {
             Args = args;
+            MinimumLoan = minimumLoan;
+            MaximumLoan = maximumLoan;
+            MultiplesOf = multiplesOf;
+            InputModel = new InputModel();
             ValidationResult = ValidationResult.Valid();
         }
 
         public void SetErrorMessage(string errorMessage)
         {
             ValidationResult = ValidationResult.Invalid(errorMessage);
-        }
-
-        public void SetArgs(string[] args)
-        {
-            Args = args;
         }
     }
 }
