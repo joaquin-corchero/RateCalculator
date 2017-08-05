@@ -40,7 +40,7 @@ namespace RateCalculator.Tests.Handlers
         [TestInitialize]
         public void Init()
         {
-            _quote = new QuoteModel(null);
+            _quote = QuoteModel.Create(null);
             _quote.InputModel.SetFileName("file.csv");
         }
 

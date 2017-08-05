@@ -2,10 +2,13 @@
 {
     public class Quote
     {
-        public double RequestedAmount { get; set; }
-        public double Rate { get; set; }
-        public double MonthlyRepayment { get; set; }
-        public double TotalRepayment { get; set; }
+        public double RequestedAmount { get;}
+
+        public double Rate { get;}
+
+        public double MonthlyRepayment { get;}
+
+        public double TotalRepayment { get;}
 
         Quote(double requestedAmount, double interestRate, double totalAmountToPay, double monthlyRepayment)
         {

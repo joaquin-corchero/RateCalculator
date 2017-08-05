@@ -27,7 +27,7 @@ namespace RateCalculator.Models
 
         public int RecalculationInterval { get; private set; }
 
-        public QuoteModel(string[] args, double minimumLoan = 1000, double maximumLoan = 15000, double multiplesOf = 100)
+        QuoteModel(string[] args, double minimumLoan, double maximumLoan, double multiplesOf)
         {
             Args = args;
             MinimumLoan = minimumLoan;
@@ -38,15 +38,20 @@ namespace RateCalculator.Models
             ValidationResult = ValidationResult.Valid();
         }
 
-        public void SetLoanPeriods(int years, int months)
+        public static QuoteModel Create(string[] args, double minimumLoan = 1000, double maximumLoan = 15000, double multiplesOf = 100)
         {
-            Years = years;
-            RecalculationInterval = months;
+            return new QuoteModel(args, minimumLoan, maximumLoan, multiplesOf);
         }
 
         public void SetErrorMessage(string errorMessage)
         {
             ValidationResult = ValidationResult.Invalid(errorMessage);
+        }
+
+        public void SetLoanPeriods(int years, int months)
+        {
+            Years = years;
+            RecalculationInterval = months;
         }
 
         public void SetLoanProviders(List<LoanProvider> loanProviders)

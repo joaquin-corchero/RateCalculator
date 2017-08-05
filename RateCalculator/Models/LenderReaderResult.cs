@@ -2,14 +2,9 @@
 
 namespace RateCalculator.Models
 {
-    public class LenderReaderResult : ModelWithValidation
+    public class LenderReaderResult
     {
         public List<LoanProvider> Lenders { get; private set; }
-
-        public LenderReaderResult() : base()
-        {
-            Lenders = new List<LoanProvider>();
-        }
 
         public void SetLenders(List<LoanProvider> lenders)
         {

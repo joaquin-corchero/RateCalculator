@@ -26,7 +26,7 @@ namespace RateCalculator.Tests.Infrastructure
         [TestInitialize]
         public void Init()
         {
-            _quote = new QuoteModel(null);
+            _quote = QuoteModel.Create(null);
             _quote.SetQuote(Quote.Create(1000, 0.07D, 4444.77777, 33.55556));
         }
 

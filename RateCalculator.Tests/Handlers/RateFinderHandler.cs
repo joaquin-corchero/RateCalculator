@@ -28,7 +28,7 @@ namespace RateCalculator.Tests.Handlers
         [TestInitialize]
         public void Initialize()
         {
-            _quote = new QuoteModel(null);
+            _quote = QuoteModel.Create(null);
             _quote.SetLoanProviders(
                 new List<LoanProvider> {
                     new LoanProvider{Lender = "Bob", Rate = 0.075D, Available= 640 },

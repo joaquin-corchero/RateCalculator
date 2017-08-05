@@ -43,7 +43,7 @@ namespace RateCalculator.Tests.Handlers
         [TestMethod]
         public void Then_if_less_than_2_arguments_are_in_the_quote_is_set_as_invalid()
         {
-            _quote = new QuoteModel(new string[] { "file.csv"});
+            _quote = QuoteModel.Create(new string[] { "file.csv"});
 
             Execute();
 
@@ -55,7 +55,7 @@ namespace RateCalculator.Tests.Handlers
         [TestMethod]
         public void Then_if_more_than_2_arguments_are_in_the_quote_is_set_as_invalid()
         {
-            _quote = new QuoteModel(new string[] { "file.csv", "1000", "Hello" });
+            _quote = QuoteModel.Create(new string[] { "file.csv", "1000", "Hello" });
 
             Execute();
 
@@ -67,7 +67,7 @@ namespace RateCalculator.Tests.Handlers
         [TestMethod]
         public void It_is_invalid_if_the_first_parameter_is_csv_file_name()
         {
-            _quote = new QuoteModel(new string[] { "1", "2" });
+            _quote = QuoteModel.Create(new string[] { "1", "2" });
 
             Execute();
 
@@ -79,7 +79,7 @@ namespace RateCalculator.Tests.Handlers
         [TestMethod]
         public void It_is_invalid_if_the_second_parameter_is_not_a_number()
         {
-            _quote = new QuoteModel(new string[] { "file.csv", "a" });
+            _quote = QuoteModel.Create(new string[] { "file.csv", "a" });
 
             Execute();
 
@@ -91,7 +91,7 @@ namespace RateCalculator.Tests.Handlers
         [TestMethod]
         public void It_is_invalid_if_second_param_is_smaller_than_minimum_loan()
         {
-            _quote = new QuoteModel(new string[] { "file.csv", (_minimumLoan - 1).ToString() });
+            _quote = QuoteModel.Create(new string[] { "file.csv", (_minimumLoan - 1).ToString() });
 
             Execute();
 
@@ -103,7 +103,7 @@ namespace RateCalculator.Tests.Handlers
         [TestMethod]
         public void It_is_invalid_if_second_param_is_greater_than_maximum_loan()
         {
-            _quote = new QuoteModel(new string[] { "file.csv", (_maximumLoan + 1).ToString() });
+            _quote = QuoteModel.Create(new string[] { "file.csv", (_maximumLoan + 1).ToString() });
 
             Execute();
 
@@ -115,7 +115,7 @@ namespace RateCalculator.Tests.Handlers
         [TestMethod]
         public void It_is_invalid_if_loan_amount_is_not_multiple()
         {
-            _quote = new QuoteModel(new string[] { "file.csv", (_minimumLoan + 1 + _multiplesOf).ToString() });
+            _quote = QuoteModel.Create(new string[] { "file.csv", (_minimumLoan + 1 + _multiplesOf).ToString() });
 
             Execute();
 
@@ -128,7 +128,7 @@ namespace RateCalculator.Tests.Handlers
         public void It_is_valid_if_the_params_are_correct()
         {
             var amount = _minimumLoan + _multiplesOf;
-            _quote = new QuoteModel(new string[] { "file.csv", (amount).ToString() });
+            _quote = QuoteModel.Create(new string[] { "file.csv", (amount).ToString() });
 
             Execute();
 
@@ -141,7 +141,7 @@ namespace RateCalculator.Tests.Handlers
         public void It_is_valid_successor_is_called()
         {
             var amount = _minimumLoan + _multiplesOf;
-            _quote = new QuoteModel(new string[] { "file.csv", (amount).ToString() });
+            _quote = QuoteModel.Create(new string[] { "file.csv", (amount).ToString() });
 
             Execute();
 

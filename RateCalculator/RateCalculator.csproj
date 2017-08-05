@@ -56,9 +56,7 @@
     <Compile Include="Handlers\CompoundCalculatorHandler.cs" />
     <Compile Include="Models\LoanProvider.cs" />
     <Compile Include="Models\InputModel.cs" />
-    <Compile Include="Models\ModelWithValidation.cs" />
     <Compile Include="Models\Quote.cs" />
-    <Compile Include="Models\QuoteResponse.cs" />
     <Compile Include="Models\LenderReaderResult.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

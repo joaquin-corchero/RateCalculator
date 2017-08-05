@@ -41,7 +41,7 @@ namespace RateCalculator.Domain
             _loanProviderReaderHandler.SetSuccessor(_rateFinderHandler);
             _rateFinderHandler.SetSuccessor(_quoteCalculatorHandler);
 
-            var quote = new QuoteModel(args);
+            var quote = QuoteModel.Create(args);
 
             _inputHandler.HandleRequest(quote);
 
