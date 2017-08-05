@@ -1,4 +1,5 @@
 ﻿using RateCalculator.Domain;
+using RateCalculator.Infrastructure;
 using System;
 
 namespace RateCalculator

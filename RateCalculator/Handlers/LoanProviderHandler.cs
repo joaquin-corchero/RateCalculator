@@ -1,4 +1,5 @@
 ﻿using RateCalculator.Domain;
+using RateCalculator.Infrastructure;
 using RateCalculator.Models;
 using System;
 using System.IO;

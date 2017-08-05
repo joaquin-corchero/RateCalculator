@@ -1,9 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NBehave.Spec.MSTest;
+using RateCalculator.Infrastructure;
 using RateCalculator.Models;
 using System.Collections.Generic;
 
-namespace RateCalculator.Tests
+namespace RateCalculator.Tests.Infrastructure
 {
 
     public class When_working_qith_the_console_formatter

@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace RateCalculator
+namespace RateCalculator.Infrastructure
 {
     public interface IOutputFormatter
     {

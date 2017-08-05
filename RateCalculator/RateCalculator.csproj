@@ -45,14 +45,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConsoleFormatter.cs" />
-    <Compile Include="Domain\CompoundQuoteCalculator.cs" />
-    <Compile Include="Domain\FileOpener.cs" />
+    <Compile Include="Infrastructure\ConsoleFormatter.cs" />
+    <Compile Include="Infrastructure\FileOpener.cs" />
     <Compile Include="Handlers\Handler.cs" />
     <Compile Include="Handlers\RateFinderHandler.cs" />
     <Compile Include="Handlers\InputHandler.cs" />
-    <Compile Include="Domain\LenderSelector.cs" />
-    <Compile Include="Domain\LendersFileReader.cs" />
     <Compile Include="Handlers\LoanProviderHandler.cs" />
     <Compile Include="Models\QuoteModel.cs" />
     <Compile Include="Domain\QuoteChainProcessor.cs" />
@@ -65,8 +62,6 @@
     <Compile Include="Models\LenderReaderResult.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Domain\QuoteResponseFactory.cs" />
-    <Compile Include="Domain\InputProcessor.cs" />
     <Compile Include="Validators\ValidationResult.cs" />
   </ItemGroup>
   <ItemGroup>

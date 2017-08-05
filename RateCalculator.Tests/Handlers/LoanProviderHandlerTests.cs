@@ -3,6 +3,7 @@ using Moq;
 using NBehave.Spec.MSTest;
 using RateCalculator.Domain;
 using RateCalculator.Handlers;
+using RateCalculator.Infrastructure;
 using RateCalculator.Models;
 using System;
 using System.Collections.Generic;
@@ -13,17 +14,19 @@ namespace RateCalculator.Tests.Handlers
     public class When_working_with_the_loan_provider_handler
     {
         protected IHandler _sut;
-        protected Mock<IFileOpener> _fileOpener;
+        private Mock<IFileOpener> fileOpener;
         protected Mock<IHandler> _successor;
         protected const double _minimumLoan = 1000;
         protected const double _maximumLoan = 15000;
         protected const double _multiplesOf = 100;
 
+        protected Mock<IFileOpener> FileOpener { get => fileOpener; set => fileOpener = value; }
+
         public When_working_with_the_loan_provider_handler()
         {
             _successor = new Mock<IHandler>();
-            _fileOpener = new Mock<IFileOpener>();
-            _sut = new LoanProviderHandler(_fileOpener.Object);
+            FileOpener = new Mock<IFileOpener>();
+            _sut = new LoanProviderHandler(FileOpener.Object);
             _sut.SetSuccessor(_successor.Object);
         }
     }
@@ -57,12 +60,12 @@ namespace RateCalculator.Tests.Handlers
         [TestMethod]
         public void The_result_is_invalid_if_file_does_not_exist()
         {
-            _fileOpener.Setup(f => f.DoesFileExist(_quote.InputModel.FileName)).Returns(false);
+            FileOpener.Setup(f => f.DoesFileExist(_quote.InputModel.FileName)).Returns(false);
 
             Execute();
 
             _quote.ValidationResult.IsValid.ShouldBeFalse();
-            _quote.ValidationResult.ErrorMessage.ShouldEqual(LendersFileReader.FILE_DOES_NOT_EXIST);
+            _quote.ValidationResult.ErrorMessage.ShouldEqual(LoanProviderHandler.FILE_DOES_NOT_EXIST);
             _quote.LoanProviders.ShouldBeEmpty();
             SuccessorIsNotCalled();
         }
@@ -70,16 +73,16 @@ namespace RateCalculator.Tests.Handlers
         [TestMethod]
         public void The_result_is_invalid_if_no_lenders_are_obtained()
         {
-            _fileOpener.Setup(f => f.DoesFileExist(_quote.InputModel.FileName)).Returns(true);
+            FileOpener.Setup(f => f.DoesFileExist(_quote.InputModel.FileName)).Returns(true);
             var textReader = new Mock<TextReader>();
             textReader.Setup(tr => tr.ReadLine()).Returns("50,100");
-            _fileOpener.Setup(f => f.GetTextReader(_quote.InputModel.FileName)).Returns(textReader.Object);
-            _fileOpener.Setup(f => f.ReadLoanProviders(textReader.Object)).Returns(new List<LoanProvider>());
+            FileOpener.Setup(f => f.GetTextReader(_quote.InputModel.FileName)).Returns(textReader.Object);
+            FileOpener.Setup(f => f.ReadLoanProviders(textReader.Object)).Returns(new List<LoanProvider>());
 
             Execute();
 
             _quote.ValidationResult.IsValid.ShouldBeFalse();
-            _quote.ValidationResult.ErrorMessage.ShouldEqual(LendersFileReader.WRONG_FORMAT_OR_EMPTY);
+            _quote.ValidationResult.ErrorMessage.ShouldEqual(LoanProviderHandler.WRONG_FORMAT_OR_EMPTY);
             _quote.LoanProviders.ShouldBeEmpty();
             SuccessorIsNotCalled();
         }
@@ -93,14 +96,14 @@ namespace RateCalculator.Tests.Handlers
                 new LoanProvider { Lender = "Name", Available = 10, Rate = 0.09D },
                 new LoanProvider { Lender = "Name", Available = 10, Rate= 0.09D }
             };
-            _fileOpener.Setup(f => f.DoesFileExist(_quote.InputModel.FileName)).Returns(true);
-            _fileOpener.Setup(f => f.GetTextReader(_quote.InputModel.FileName)).Returns(textReader.Object);
-            _fileOpener.Setup(f => f.ReadLoanProviders(textReader.Object)).Throws(new Exception("something wrong"));
+            FileOpener.Setup(f => f.DoesFileExist(_quote.InputModel.FileName)).Returns(true);
+            FileOpener.Setup(f => f.GetTextReader(_quote.InputModel.FileName)).Returns(textReader.Object);
+            FileOpener.Setup(f => f.ReadLoanProviders(textReader.Object)).Throws(new Exception("something wrong"));
 
             Execute();
 
             _quote.ValidationResult.IsValid.ShouldBeFalse();
-            _quote.ValidationResult.ErrorMessage.ShouldEqual($"{LendersFileReader.EXCEPTION_HAPPENED} something wrong");
+            _quote.ValidationResult.ErrorMessage.ShouldEqual($"{LoanProviderHandler.EXCEPTION_HAPPENED} something wrong");
             _quote.LoanProviders.ShouldBeEmpty();
             SuccessorIsNotCalled();
         }
@@ -125,9 +128,9 @@ namespace RateCalculator.Tests.Handlers
                 new LoanProvider { Lender = "Name", Available = 10, Rate = 0.09D },
                 new LoanProvider { Lender = "Name", Available = 10, Rate= 0.09D }
             };
-            _fileOpener.Setup(f => f.DoesFileExist(_quote.InputModel.FileName)).Returns(true);
-            _fileOpener.Setup(f => f.GetTextReader(_quote.InputModel.FileName)).Returns(textReader.Object);
-            _fileOpener.Setup(f => f.ReadLoanProviders(textReader.Object)).Returns(_lenders);
+            FileOpener.Setup(f => f.DoesFileExist(_quote.InputModel.FileName)).Returns(true);
+            FileOpener.Setup(f => f.GetTextReader(_quote.InputModel.FileName)).Returns(textReader.Object);
+            FileOpener.Setup(f => f.ReadLoanProviders(textReader.Object)).Returns(_lenders);
         }
 
         [TestMethod]

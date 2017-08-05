@@ -71,7 +71,7 @@ namespace RateCalculator.Tests.Handlers
 
             Execute();
 
-            _quote.ValidationResult.ErrorMessage.ShouldEqual(InputProcessor.INVALID_CSV);
+            _quote.ValidationResult.ErrorMessage.ShouldEqual(InputHandler.INVALID_CSV);
             _quote.ValidationResult.IsValid.ShouldBeFalse();
             SuccessorIsNotCalled();
         }
@@ -83,7 +83,7 @@ namespace RateCalculator.Tests.Handlers
 
             Execute();
 
-            _quote.ValidationResult.ErrorMessage.ShouldEqual(InputProcessor.INVALID_LOAN_AMOUNT);
+            _quote.ValidationResult.ErrorMessage.ShouldEqual(InputHandler.INVALID_LOAN_AMOUNT);
             _quote.ValidationResult.IsValid.ShouldBeFalse();
             SuccessorIsNotCalled();
         }
@@ -95,7 +95,7 @@ namespace RateCalculator.Tests.Handlers
 
             Execute();
 
-            _quote.ValidationResult.ErrorMessage.ShouldEqual(InputProcessor.INVALID_LOAN_AMOUNT);
+            _quote.ValidationResult.ErrorMessage.ShouldEqual(InputHandler.INVALID_LOAN_AMOUNT);
             _quote.ValidationResult.IsValid.ShouldBeFalse();
             SuccessorIsNotCalled();
         }
@@ -107,7 +107,7 @@ namespace RateCalculator.Tests.Handlers
 
             Execute();
 
-            _quote.ValidationResult.ErrorMessage.ShouldEqual(InputProcessor.INVALID_LOAN_AMOUNT);
+            _quote.ValidationResult.ErrorMessage.ShouldEqual(InputHandler.INVALID_LOAN_AMOUNT);
             _quote.ValidationResult.IsValid.ShouldBeFalse();
             SuccessorIsNotCalled();
         }
@@ -119,7 +119,7 @@ namespace RateCalculator.Tests.Handlers
 
             Execute();
 
-            _quote.ValidationResult.ErrorMessage.ShouldEqual(InputProcessor.INVALID_LOAN_AMOUNT);
+            _quote.ValidationResult.ErrorMessage.ShouldEqual(InputHandler.INVALID_LOAN_AMOUNT);
             _quote.ValidationResult.IsValid.ShouldBeFalse();
             SuccessorIsNotCalled();
         }

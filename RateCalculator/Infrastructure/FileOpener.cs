@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace RateCalculator.Domain
+namespace RateCalculator.Infrastructure
 {
     public interface IFileOpener
     {
