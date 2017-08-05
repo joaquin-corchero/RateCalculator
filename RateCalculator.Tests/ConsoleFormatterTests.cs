@@ -1,11 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NBehave.Spec.MSTest;
 using RateCalculator.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RateCalculator.Tests
 {
@@ -36,6 +32,18 @@ namespace RateCalculator.Tests
         void Execute()
         {
             _result = _sut.GenerateOutput(_quote);
+        }
+
+        [TestMethod]
+        public void Then_if_the_quote_has_an_error_the_error_is_displayed()
+        {
+            _quote.SetErrorMessage("something wrong");
+
+            Execute();
+
+            _result[0].ShouldEqual("something wrong");
+
+            _result.Count.ShouldEqual(1);
         }
 
         [TestMethod]

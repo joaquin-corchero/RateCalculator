@@ -1,5 +1,5 @@
-﻿using System;
-using RateCalculator.Models;
+﻿using RateCalculator.Models;
+using System;
 using System.Collections.Generic;
 
 namespace RateCalculator
@@ -13,6 +13,11 @@ namespace RateCalculator
     {
         public List<string> GenerateOutput(QuoteModel quote)
         {
+            if(!quote.ValidationResult.IsValid)
+            {
+                return new List<string> { quote.ValidationResult.ErrorMessage };
+            }
+
             return new List<string> {
                 $"Requested amount: £{quote.Quote.RequestedAmount}",
                 $"Rate: {Math.Round(quote.Quote.Rate * 100, 1).ToString("0.0")}%",

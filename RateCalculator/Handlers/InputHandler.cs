@@ -1,5 +1,4 @@
 ﻿using RateCalculator.Models;
-using System;
 using System.IO;
 
 namespace RateCalculator.Handlers
