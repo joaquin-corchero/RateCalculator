@@ -30,12 +30,18 @@ namespace RateCalculator.Models
             MaximumLoan = maximumLoan;
             MultiplesOf = multiplesOf;
             InputModel = new InputModel();
+            LoanProviders = new List<LoanProvider>();
             ValidationResult = ValidationResult.Valid();
         }
 
         public void SetErrorMessage(string errorMessage)
         {
             ValidationResult = ValidationResult.Invalid(errorMessage);
+        }
+
+        internal void SetLoanProviders(List<LoanProvider> loanProviders)
+        {
+            LoanProviders = loanProviders;
         }
     }
 }

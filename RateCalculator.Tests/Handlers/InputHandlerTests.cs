@@ -28,11 +28,16 @@ namespace RateCalculator.Tests.Handlers
     {
         QuoteModel _quote;
 
-        public object ImnputHandler { get; private set; }
-
         void Execute()
         {
             _sut.HandleRequest(_quote);
+        }
+
+        void SuccessorIsNotCalled()
+        {
+            _successor.Verify(h =>
+                          h.HandleRequest(It.Is<QuoteModel>(v => v == _quote)),
+                          Times.Never);
         }
 
         [TestMethod]
@@ -44,6 +49,7 @@ namespace RateCalculator.Tests.Handlers
 
             _quote.ValidationResult.IsValid.ShouldBeFalse();
             _quote.ValidationResult.ErrorMessage.ShouldEqual(InputHandler.INVALID_PARAMETERS);
+            SuccessorIsNotCalled();
         }
 
         [TestMethod]
@@ -55,6 +61,7 @@ namespace RateCalculator.Tests.Handlers
 
             _quote.ValidationResult.IsValid.ShouldBeFalse();
             _quote.ValidationResult.ErrorMessage.ShouldEqual(InputHandler.INVALID_PARAMETERS);
+            SuccessorIsNotCalled();
         }
 
         [TestMethod]
@@ -66,8 +73,8 @@ namespace RateCalculator.Tests.Handlers
 
             _quote.ValidationResult.ErrorMessage.ShouldEqual(InputProcessor.INVALID_CSV);
             _quote.ValidationResult.IsValid.ShouldBeFalse();
+            SuccessorIsNotCalled();
         }
-
 
         [TestMethod]
         public void It_is_invalid_if_the_second_parameter_is_not_a_number()
@@ -78,6 +85,7 @@ namespace RateCalculator.Tests.Handlers
 
             _quote.ValidationResult.ErrorMessage.ShouldEqual(InputProcessor.INVALID_LOAN_AMOUNT);
             _quote.ValidationResult.IsValid.ShouldBeFalse();
+            SuccessorIsNotCalled();
         }
 
         [TestMethod]
@@ -89,6 +97,7 @@ namespace RateCalculator.Tests.Handlers
 
             _quote.ValidationResult.ErrorMessage.ShouldEqual(InputProcessor.INVALID_LOAN_AMOUNT);
             _quote.ValidationResult.IsValid.ShouldBeFalse();
+            SuccessorIsNotCalled();
         }
 
         [TestMethod]
@@ -100,6 +109,7 @@ namespace RateCalculator.Tests.Handlers
 
             _quote.ValidationResult.ErrorMessage.ShouldEqual(InputProcessor.INVALID_LOAN_AMOUNT);
             _quote.ValidationResult.IsValid.ShouldBeFalse();
+            SuccessorIsNotCalled();
         }
 
         [TestMethod]
@@ -111,6 +121,7 @@ namespace RateCalculator.Tests.Handlers
 
             _quote.ValidationResult.ErrorMessage.ShouldEqual(InputProcessor.INVALID_LOAN_AMOUNT);
             _quote.ValidationResult.IsValid.ShouldBeFalse();
+            SuccessorIsNotCalled();
         }
 
         [TestMethod]

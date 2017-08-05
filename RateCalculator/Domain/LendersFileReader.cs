@@ -14,11 +14,11 @@ namespace RateCalculator.Domain
         public const string FILE_DOES_NOT_EXIST = "The file does not exist";
         public const string EXCEPTION_HAPPENED = "There was a problem reading the file: ";
         public const string WRONG_FORMAT_OR_EMPTY = "Make sure the file is comma separated and has 3 columns (Lender, Rate, Available)";
+        readonly IFileOpener _fileOpener;
 
-        private readonly IFileOpener _fileOpener;
         public LendersFileReader(IFileOpener fileOpener)
         {
-            this._fileOpener = fileOpener;
+            _fileOpener = fileOpener;
         }
 
         public LendersFileReader() : this(new FileOpener()) { }

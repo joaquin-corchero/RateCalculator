@@ -29,12 +29,10 @@ namespace RateCalculator.Handlers
             if (quote.InputModel.LoanAmount == 0)
             {
                 quote.SetErrorMessage(INVALID_LOAN_AMOUNT);
+                return;
             }
 
-            if (quote.ValidationResult.IsValid)
-            {
-                successor.HandleRequest(quote);
-            }
+            successor.HandleRequest(quote);
         }
 
         void SetFileName(QuoteModel quote)
