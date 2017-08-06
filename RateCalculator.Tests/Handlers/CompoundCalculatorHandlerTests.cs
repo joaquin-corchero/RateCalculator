@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NBehave.Spec.MSTest;
+using RateCalculator.Domain;
 using RateCalculator.Handlers;
 using RateCalculator.Models;
 using System;
@@ -25,7 +26,6 @@ namespace RateCalculator.Tests.Handlers
         public void Init()
         {
             _quote = QuoteModel.Create(null);
-            _quote.SetLoanPeriods(3, 12);
         }
 
         void Execute()

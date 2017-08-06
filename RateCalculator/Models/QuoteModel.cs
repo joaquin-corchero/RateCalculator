@@ -1,5 +1,6 @@
 ﻿using RateCalculator.Validators;
 using System.Collections.Generic;
+using System;
 
 namespace RateCalculator.Models
 {
@@ -27,31 +28,28 @@ namespace RateCalculator.Models
 
         public int RecalculationInterval { get; private set; }
 
-        QuoteModel(string[] args, double minimumLoan, double maximumLoan, double multiplesOf)
+      
+        QuoteModel(string[] args, double minimumLoan, double maximumLoan, double multiplesOf, int years, int recalculationInterval)
         {
             Args = args;
             MinimumLoan = minimumLoan;
             MaximumLoan = maximumLoan;
             MultiplesOf = multiplesOf;
+            Years = years;
+            RecalculationInterval = recalculationInterval;
             InputModel = new InputModel();
             LoanProviders = new List<LoanProvider>();
             ValidationResult = ValidationResult.Valid();
         }
 
-        public static QuoteModel Create(string[] args, double minimumLoan = 1000, double maximumLoan = 15000, double multiplesOf = 100)
+        public static QuoteModel Create(string[] args, double minimumLoan = 1000, double maximumLoan = 15000, double multiplesOf = 100, int years =3, int recalculationInterval = 12)
         {
-            return new QuoteModel(args, minimumLoan, maximumLoan, multiplesOf);
+            return new QuoteModel(args, minimumLoan, maximumLoan, multiplesOf, years, recalculationInterval);
         }
 
         public void SetErrorMessage(string errorMessage)
         {
             ValidationResult = ValidationResult.Invalid(errorMessage);
-        }
-
-        public void SetLoanPeriods(int years, int months)
-        {
-            Years = years;
-            RecalculationInterval = months;
         }
 
         public void SetLoanProviders(List<LoanProvider> loanProviders)
