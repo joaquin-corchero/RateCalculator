@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace RateCalculator.Infrastructure
 {
-    public interface IFileOpener
+    public interface IFileReader
     {
         bool DoesFileExist(string fileName);
 
@@ -15,7 +15,7 @@ namespace RateCalculator.Infrastructure
         List<LoanProvider> ReadLoanProviders(TextReader reader);
     }
 
-    public class FileOpener : IFileOpener
+    public class FileReader : IFileReader
     {
         public bool DoesFileExist(string fileName)
         {

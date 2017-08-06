@@ -6,7 +6,6 @@ using System.Collections.Generic;
 
 namespace RateCalculator.Tests.Infrastructure
 {
-
     public class When_working_qith_the_console_formatter
     {
         protected IOutputFormatter _sut;

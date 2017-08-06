@@ -12,18 +12,18 @@ namespace RateCalculator.Handlers
         public const string EXCEPTION_HAPPENED = "There was a problem reading the file: ";
         public const string WRONG_FORMAT_OR_EMPTY = "Make sure the file is comma separated and has 3 columns (Lender, Rate, Available)";
 
-        private readonly IFileOpener _fileOpener;
+        private readonly IFileReader _fileReader;
 
-        public LoanProviderHandler(IFileOpener fileOpener)
+        public LoanProviderHandler(IFileReader fileReader)
         {
-            _fileOpener = fileOpener;
+            _fileReader = fileReader;
         }
 
-        public LoanProviderHandler() : this(new FileOpener()) { }
+        public LoanProviderHandler() : this(new FileReader()) { }
 
         public override void HandleRequest(QuoteModel quote)
         {
-            if (!_fileOpener.DoesFileExist(quote.InputModel.FileName))
+            if (!_fileReader.DoesFileExist(quote.InputModel.FileName))
             {
                 quote.SetErrorMessage(FILE_DOES_NOT_EXIST);
                 return;
@@ -32,8 +32,8 @@ namespace RateCalculator.Handlers
             TextReader reader = TextReader.Null;
             try
             {
-                reader = _fileOpener.GetTextReader(quote.InputModel.FileName);
-                quote.SetLoanProviders(_fileOpener.ReadLoanProviders(reader));
+                reader = _fileReader.GetTextReader(quote.InputModel.FileName);
+                quote.SetLoanProviders(_fileReader.ReadLoanProviders(reader));
                 if (quote.LoanProviders.Count == 0)
                 {
                     quote.SetErrorMessage(WRONG_FORMAT_OR_EMPTY);

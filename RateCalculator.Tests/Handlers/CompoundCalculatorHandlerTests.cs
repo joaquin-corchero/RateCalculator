@@ -1,6 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NBehave.Spec.MSTest;
-using RateCalculator.Domain;
 using RateCalculator.Handlers;
 using RateCalculator.Models;
 using System;

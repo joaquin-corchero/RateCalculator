@@ -46,7 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Infrastructure\ConsoleFormatter.cs" />
-    <Compile Include="Infrastructure\FileOpener.cs" />
+    <Compile Include="Infrastructure\FileReader.cs" />
     <Compile Include="Handlers\Handler.cs" />
     <Compile Include="Handlers\RateFinderHandler.cs" />
     <Compile Include="Handlers\InputHandler.cs" />
@@ -60,7 +60,7 @@
     <Compile Include="Models\LenderReaderResult.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Validators\ValidationResult.cs" />
+    <Compile Include="Models\ValidationResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

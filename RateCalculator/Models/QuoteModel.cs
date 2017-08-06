@@ -1,6 +1,4 @@
-﻿using RateCalculator.Validators;
-using System.Collections.Generic;
-using System;
+﻿using System.Collections.Generic;
 
 namespace RateCalculator.Models
 {
@@ -27,7 +25,6 @@ namespace RateCalculator.Models
         public int Years { get; private set; }
 
         public int RecalculationInterval { get; private set; }
-
       
         QuoteModel(string[] args, double minimumLoan, double maximumLoan, double multiplesOf, int years, int recalculationInterval)
         {
@@ -66,6 +63,5 @@ namespace RateCalculator.Models
         {
             Quote = quote;
         }
-
     }
 }

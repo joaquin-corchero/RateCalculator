@@ -13,19 +13,17 @@ namespace RateCalculator.Tests.Handlers
     public class When_working_with_the_loan_provider_handler
     {
         protected IHandler _sut;
-        private Mock<IFileOpener> fileOpener;
+        protected Mock<IFileReader> _fileReader;
         protected Mock<IHandler> _successor;
         protected const double _minimumLoan = 1000;
         protected const double _maximumLoan = 15000;
         protected const double _multiplesOf = 100;
 
-        protected Mock<IFileOpener> FileOpener { get => fileOpener; set => fileOpener = value; }
-
         public When_working_with_the_loan_provider_handler()
         {
             _successor = new Mock<IHandler>();
-            FileOpener = new Mock<IFileOpener>();
-            _sut = new LoanProviderHandler(FileOpener.Object);
+            _fileReader = new Mock<IFileReader>();
+            _sut = new LoanProviderHandler(_fileReader.Object);
             _sut.SetSuccessor(_successor.Object);
         }
     }
@@ -59,7 +57,7 @@ namespace RateCalculator.Tests.Handlers
         [TestMethod]
         public void The_result_is_invalid_if_file_does_not_exist()
         {
-            FileOpener.Setup(f => f.DoesFileExist(_quote.InputModel.FileName)).Returns(false);
+            _fileReader.Setup(f => f.DoesFileExist(_quote.InputModel.FileName)).Returns(false);
 
             Execute();
 
@@ -72,11 +70,11 @@ namespace RateCalculator.Tests.Handlers
         [TestMethod]
         public void The_result_is_invalid_if_no_lenders_are_obtained()
         {
-            FileOpener.Setup(f => f.DoesFileExist(_quote.InputModel.FileName)).Returns(true);
+            _fileReader.Setup(f => f.DoesFileExist(_quote.InputModel.FileName)).Returns(true);
             var textReader = new Mock<TextReader>();
             textReader.Setup(tr => tr.ReadLine()).Returns("50,100");
-            FileOpener.Setup(f => f.GetTextReader(_quote.InputModel.FileName)).Returns(textReader.Object);
-            FileOpener.Setup(f => f.ReadLoanProviders(textReader.Object)).Returns(new List<LoanProvider>());
+            _fileReader.Setup(f => f.GetTextReader(_quote.InputModel.FileName)).Returns(textReader.Object);
+            _fileReader.Setup(f => f.ReadLoanProviders(textReader.Object)).Returns(new List<LoanProvider>());
 
             Execute();
 
@@ -95,9 +93,9 @@ namespace RateCalculator.Tests.Handlers
                 new LoanProvider { Lender = "Name", Available = 10, Rate = 0.09D },
                 new LoanProvider { Lender = "Name", Available = 10, Rate= 0.09D }
             };
-            FileOpener.Setup(f => f.DoesFileExist(_quote.InputModel.FileName)).Returns(true);
-            FileOpener.Setup(f => f.GetTextReader(_quote.InputModel.FileName)).Returns(textReader.Object);
-            FileOpener.Setup(f => f.ReadLoanProviders(textReader.Object)).Throws(new Exception("something wrong"));
+            _fileReader.Setup(f => f.DoesFileExist(_quote.InputModel.FileName)).Returns(true);
+            _fileReader.Setup(f => f.GetTextReader(_quote.InputModel.FileName)).Returns(textReader.Object);
+            _fileReader.Setup(f => f.ReadLoanProviders(textReader.Object)).Throws(new Exception("something wrong"));
 
             Execute();
 
@@ -127,9 +125,9 @@ namespace RateCalculator.Tests.Handlers
                 new LoanProvider { Lender = "Name", Available = 10, Rate = 0.09D },
                 new LoanProvider { Lender = "Name", Available = 10, Rate= 0.09D }
             };
-            FileOpener.Setup(f => f.DoesFileExist(_quote.InputModel.FileName)).Returns(true);
-            FileOpener.Setup(f => f.GetTextReader(_quote.InputModel.FileName)).Returns(textReader.Object);
-            FileOpener.Setup(f => f.ReadLoanProviders(textReader.Object)).Returns(_lenders);
+            _fileReader.Setup(f => f.DoesFileExist(_quote.InputModel.FileName)).Returns(true);
+            _fileReader.Setup(f => f.GetTextReader(_quote.InputModel.FileName)).Returns(textReader.Object);
+            _fileReader.Setup(f => f.ReadLoanProviders(textReader.Object)).Returns(_lenders);
         }
 
         [TestMethod]

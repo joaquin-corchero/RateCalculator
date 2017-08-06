@@ -1,4 +1,4 @@
-﻿namespace RateCalculator.Validators
+﻿namespace RateCalculator.Models
 {
     public class ValidationResult
     {
